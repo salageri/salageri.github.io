@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrinivas Alageri | Enterprise Architect & Agentic AI Specialist</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        /* Hero Section */
+        header {
+            margin-bottom: 5rem;
+        }
+
+        .hero-tag {
+            color: var(--accent-cyan);
+            font-family: monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: var(--card-bg);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: "//";
+            color: var(--accent-cyan);
+            font-family: monospace;
+        }
+
+        /* Interactive Architecture Block */
+        .arch-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .arch-nodes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .node-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .node-card.active, .node-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+        }
+
+        .node-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-cyan);
+        }
+
+        .node-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .arch-display {
+            background: #000;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #10b981;
+            min-height: 100px;
+        }
+
+        /* Case Studies Grid */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .matrix-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .matrix-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .matrix-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .meta-item span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* Skills Tags */
+        .skills-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Hero Section -->
+    <header>
+        <div class="hero-tag">System Architecture & Agentic Automation</div>
+        <h1>Shrinivas Alageri</h1>
+        <p class="hero-sub">Enterprise Solution Architect specializing in multi-threaded sync engines, high-availability hub migrations, and autonomous workflow orchestration.</p>
+        <div class="btn-group">
+            <a href="mailto:salageri@gmail.com" class="btn btn-primary">Schedule Executive Briefing</a>
+            <a href="https://linkedin.com/in/shrinivasalageri" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+        </div>
+    </header>
+
+    <!-- Interactive Architecture Visualizer -->
+    <section>
+        <h2>System Architecture Visualizer</h2>
+        <div class="arch-container">
+            <div class="arch-nodes">
+                <div class="node-card active" onclick="showNode('plm')">
+                    <div class="node-title">01. PLM/ALM Hub Migration</div>
+                    <div class="node-desc">PTC Windchill RV&S to Codebeamer unified architecture.</div>
+                </div>
+                <div class="node-card" onclick="showNode('agentic')">
+                    <div class="node-title">02. Agentic PCM Deployment</div>
+                    <div class="node-desc">Zero-touch change request routing & execution.</div>
+                </div>
+                <div class="node-card" onclick="showNode('sync')">
+                    <div class="node-title">03. Multi-Threaded Sync Engine</div>
+                    <div class="node-desc">Python & Java Reflection high-throughput data sync.</div>
+                </div>
+            </div>
+            <div class="arch-display" id="archConsole">
+                > Initializing PLM Ecosystem Blueprint...<br>
+                > Target: Codebeamer Unified Hub Architecture.<br>
+                > Status: Continuous multi-threaded database sync active; migration risk mitigated to 0%.
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section>
+        <h2>Executive Case Studies</h2>
+        <div class="matrix-grid">
+            <div class="matrix-card">
+                <h3>Enterprise Modernization & Unified Hub Strategy</h3>
+                <p>Engineered the strategic roadmap to transition legacy configuration logic into unified enterprise platforms, eliminating cross-system latency and operational silos.</p>
+                <div class="matrix-meta">
+                    <div class="meta-item"><span>Target Domain</span>RVS Systems & Configuration Management</div>
+                    <div class="meta-item"><span>Key Technology</span>Codebeamer, PTC Windchill, REST Gateways</div>
+                    <div class="meta-item"><span>Business Outcome</span>Zero-downtime transition & unified data model</div>
+                </div>
+            </div>
+
+            <div class="matrix-card">
+                <h3>Agentic Workflow & Autonomous Containment</h3>
+                <p>Designed intelligent agent frameworks for dynamic process transitions and RB-series containment buckets to secure work-in-progress modifications during live iterations.</p>
+                <div class="matrix-meta">
+                    <div class="meta-item"><span>Target Domain</span>Process Automation & Compliance</div>
+                    <div class="meta-item"><span>Key Technology</span>Python Orchestration, Automated Gateways</div>
+                    <div class="meta-item"><span>Business Outcome</span>Maximized audit compliance & reduced manual overhead</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Stack -->
+    <section>
+        <h2>Core Technical Capabilities</h2>
+        <div class="skills-group">
+            <div class="tag">Enterprise Architecture</div>
+            <div class="tag">Agentic AI Workflows</div>
+            <div class="tag">Python (Multi-Threading / Async)</div>
+            <div class="tag">Java Reflection</div>
+            <div class="tag">Codebeamer & PTC Windchill</div>
+            <div class="tag">SQLite / Relational Databases</div>
+            <div class="tag">Tableau Data Analytics</div>
+            <div class="tag">Governance & Risk Management</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Shrinivas Alageri. Built for Enterprise Execution.</p>
+    </footer>
+
+</div>
+
+<script>
+    function showNode(type) {
+        // Toggle active visual card
+        document.querySelectorAll('.node-card').forEach(card => card.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+
+        const console = document.getElementById('archConsole');
+        
+        if(type === 'plm') {
+            console.innerHTML = "> Initializing PLM Ecosystem Blueprint...<br>> Target: Codebeamer Unified Hub Architecture.<br>> Status: Continuous multi-threaded database sync active; migration risk mitigated to 0%.";
+        } else if(type === 'agentic') {
+            console.innerHTML = "> Agentic PCM Routing Active...<br>> Processing incoming change requests via intelligent agents.<br>> Executing automated process transitions across isolated RB-series containment buckets.";
+        } else if(type === 'sync') {
+            console.innerHTML = "> Multi-Threaded Sync Engine Running...<br>> Ingesting relational schemas using Java Reflection & Async Python.<br>> Reconciling cross-system payloads with zero database locking.";
+        }
+    }
+</script>
+
+</body>
+</html>
