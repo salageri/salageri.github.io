@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shrinivas Alageri</title>
+    <link rel="shortcut icon" href="img/a-icon.ico" />
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+
+    <!-- Styles for the New Architecture Tab -->
+    <style>
+        #architecture {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            padding: 100px 0;
+        }
+        .arch-container {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 30px;
+        }
+        .arch-nodes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .node-card {
+            background: #0b0f19;
+            border: 1px solid #1f2937;
+            padding: 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+        .node-card.active, .node-card:hover {
+            border-color: #06b6d4;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+        }
+        .node-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #06b6d4;
+        }
+        .node-desc {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+        .arch-display {
+            background: #000;
+            border: 1px solid #1f2937;
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #10b981;
+            min-height: 100px;
+            text-align: left;
+        }
+        .matrix-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .matrix-card h3 { color: #fff; margin-top: 0; }
+        .matrix-card p { color: #9ca3af; }
+        .matrix-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .meta-item span {
+            display: block;
+            color: #6b7280;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        .skills-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tag {
+            background: #111827;
+            border: 1px solid #1f2937;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.875rem;
+            color: #06b6d4;
+        }
+        .hero-tag {
+            color: #06b6d4;
+            font-family: monospace;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Shrinivas Alageri</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#architecture">Architecture</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="resume/ShrinivasAlageri_Resume.pdf" target="_blank">Resume</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="http://shrinivasalageri.weebly.com" target="_blank">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>HI! I'M Shrinivas</h1>
+                <hr>
+                <p>Analyzing data to make better and informed business decisions</p>
+                 <a href="https://public.tableau.com/profile/shrinivas7370#!/vizhome/ShrinivasGurunathAlageriResume2017/SHRINIVASGALAGERIRESUME" rel="noopener noreferrer" target="_blank" class="btn btn-primary btn-xl page-scroll">Data Visualisation</a>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">About me</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about" style="height: 100%">
+        <div class="container">
+            <img src="img/Shrinivas.jpg" class="img-responsive" alt="" style="margin :auto">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <hr class="light">
+                    <p class="text-faded">Shrinivas is motivated by the belief that data can be used to make better decisions. He wants to be able to make it easier for people to understand code and use data efficiently. Shrinivas believes in open data and open source software. Shrinivas primarily uses Java.J2EE,Python,Tableau,AngularJS</p>
+                    <p class="text-faded">Worked as a Lead Software at Polycom, Shrinivas is currently helping organizations understand the importance of automated and Unified Communication. Shrinivas graduated from SDMCET Dharwad in Electronics and Communication where he explored various facets of data science and user research.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: ENTERPRISE ARCHITECT & AGENTIC AI -->
+    <section id="architecture">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-12">
+                    <div class="hero-tag">System Architecture & Agentic Automation</div>
+                    <h2 class="section-heading" style="color:white">Enterprise Solution Architect</h2>
+                    <p class="text-faded" style="color: #9ca3af; font-size: 1.2em;">Specializing in multi-threaded sync engines, high-availability hub migrations, and autonomous workflow orchestration.</p>
+                    <hr class="light">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text-center" style="color:white">System Architecture Visualizer</h3>
+                    <div class="arch-container">
+                        <div class="arch-nodes">
+                            <div class="node-card active" onclick="showNode('plm', event)">
+                                <div class="node-title">01. PLM/ALM Hub Migration</div>
+                                <div class="node-desc">PTC Windchill RV&S to Codebeamer unified architecture.</div>
+                            </div>
+                            <div class="node-card" onclick="showNode('agentic', event)">
+                                <div class="node-title">02. Agentic PCM Deployment</div>
+                                <div class="node-desc">Zero-touch change request routing & execution.</div>
+                            </div>
+                            <div class="node-card" onclick="showNode('sync', event)">
+                                <div class="node-title">03. Multi-Threaded Sync Engine</div>
+                                <div class="node-desc">Python & Java Reflection high-throughput data sync.</div>
+                            </div>
+                        </div>
+                        <div class="arch-display" id="archConsole">
+                            > Initializing PLM Ecosystem Blueprint...<br>
+                            > Target: Codebeamer Unified Hub Architecture.<br>
+                            > Status: Continuous multi-threaded database sync active; migration risk mitigated to 0%.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-lg-6">
+                    <div class="matrix-card">
+                        <h3>Enterprise Modernization</h3>
+                        <p>Engineered the strategic roadmap to transition legacy configuration logic into unified enterprise platforms.</p>
+                        <div class="matrix-meta">
+                            <div class="meta-item"><span>Target</span>RVS Systems</div>
+                            <div class="meta-item"><span>Tech</span>Codebeamer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="matrix-card">
+                        <h3>Agentic Workflow</h3>
+                        <p>Designed intelligent agent frameworks for dynamic process transitions and containment buckets.</p>
+                        <div class="matrix-meta">
+                            <div class="meta-item"><span>Target</span>Automation</div>
+                            <div class="meta-item"><span>Tech</span>Python</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="skills-group">
+                        <div class="tag">Enterprise Architecture</div>
+                        <div class="tag">Agentic AI Workflows</div>
+                        <div class="tag">Python (Multi-Threading)</div>
+                        <div class="tag">Java Reflection</div>
+                        <div class="tag">Codebeamer</div>
+                        <div class="tag">Tableau Analytics</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="no-padding" id="projects">
+      <div class="container" style="padding-top: 20px">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <h2 class="section-heading">Projects</h2>
+                  <hr class="primary">
+              </div>
+          </div>
+      </div>
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-3 col-lg-offset-1 coldcol-sm-4">
+                    <div style="width :95%">
+                        <a href="hydrobase.html" class="portfolio-box" >
+                            <img src="img/hydrobase.png" class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                  <div class="project-category text-faded">
+                                      Internet of things
+                                  </div>
+                                    <div class="project-name">
+                                        Hydrobase
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">Product Manager</h3></br>
+                        <p class="text-muted" style="font-size: small"> A control system and an analytics engine to help plants grow</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4">
+                    <div style="width :95%">
+                        <a href="jeopardy.html" class="portfolio-box">
+                            <img src="img/jeopardy.png" class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                  <div class="project-category text-faded">
+                                      Information Visualization
+                                  </div>
+                                    <div class="project-name">
+                                        This is Jeopardy!
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">Info-Viz Engineer</h3></br>
+                        <p class="text-muted" style="font-size: small"> Get to know more about your favourite game show in a more visually appealing way.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4">
+                    <div style="width :95%">
+                        <a href="nyce.html" class="portfolio-box">
+                            <img src="img/NYCe.png" class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-category text-faded">
+                                        Data Mining and Analytics
+                                    </div>
+                                    <div class="project-name">
+                                        NYCe Taxi
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">Machine Learning Engineer</h3></br>
+                        <p class="text-muted" style="font-size: small">The best tool to predict the Tip of a New York Taxi cab driver.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4">
+                    <div style="width :95%">
+                        <a href="memeoke.html" class="portfolio-box">
+                            <img src="img/memeoke.png"  class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-category text-faded">
+                                        Web Architechture
+                                    </div>
+                                    <div class="project-name">
+                                        Memeoke
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">Backend Developer</h3></br>
+                        <p class="text-muted" style="font-size: small">The place to be if you want to sing your heart out to amazing lyrics and funny GIFs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4">
+                    <div style="width :95%">
+                        <a href="travelbites.html" class="portfolio-box">
+                            <img src="img/travelbites.png"  class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-category text-faded">
+                                        User Interface Design and Development
+                                    </div>
+                                    <div class="project-name">
+                                        Travel Bites
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">UX Reseacher</h3></br>
+                        <p class="text-muted" style="font-size: small">The app that allows you to plan your travel iternary around food.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4">
+                    <div style="width :95%">
+                        <a href="anlp.html" class="portfolio-box">
+                            <img src="img/anlp.png"  class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-category text-faded">
+                                        Natural Language Processing
+                                    </div>
+                                    <div class="project-name">
+                                        Restaurant Ambience Tagger
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">NLP Engineer</h3></br>
+                        <p class="text-muted" style="font-size: small">Classification model to assign tags to restaurants based on features.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4">
+                    <div style="width :95%">
+                        <a href="cookcounty.html" class="portfolio-box">
+                            <img src="img/cookcounty.png"  class="img-responsive" alt="">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-category text-faded">
+                                        Applied Data Analytics Project
+                                    </div>
+                                    <div class="project-name">
+                                        Cook County Hospital
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <h3 style="text-align: center">Data Science Consultant</h3></br>
+                        <p class="text-muted" style="font-size: small"> Strategy and recommendations for Stroger Hospital in Chicago.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Get In Touch!</h2>
+                    <hr class="primary">
+                </div>
+                <div class="col-lg-2 col-lg-offset-3 text-center">
+                    <a href="https://github.com/salageri" class="fa fa-github fa-3x wow bounceIn"></a>
+                </div>
+                <div class="col-lg-2  text-center">
+                    <a href="https://www.linkedin.com/in/shrinivasalageri" class="fa fa-linkedin fa-3x wow bounceIn"></a>
+                </div>
+                <div class="col-lg-2 text-center">
+                    <a href="mailto:salageri@gmail.com" class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/creative.js"></script>
+
+    <!-- Script for Architecture Visualizer -->
+    <script>
+        function showNode(type, event) {
+            document.querySelectorAll('.node-card').forEach(card => card.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const consoleObj = document.getElementById('archConsole');
+            
+            if(type === 'plm') {
+                consoleObj.innerHTML = "> Initializing PLM Ecosystem Blueprint...<br>> Target: Codebeamer Unified Hub Architecture.<br>> Status: Continuous multi-threaded database sync active; migration risk mitigated to 0%.";
+            } else if(type === 'agentic') {
+                consoleObj.innerHTML = "> Agentic PCM Routing Active...<br>> Processing incoming change requests via intelligent agents.<br>> Executing automated process transitions across isolated containment buckets.";
+            } else if(type === 'sync') {
+                consoleObj.innerHTML = "> Multi-Threaded Sync Engine Running...<br>> Ingesting relational schemas using Java Reflection & Async Python.<br>> Reconciling cross-system payloads with zero database locking.";
+            }
+        }
+    </script>
+
+</body>
+</html>
