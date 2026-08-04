@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniSync Agentic Mesh (OSAM) - Runtime Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        /* Metrics Row */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .metric-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2.25rem;
+            font-weight: 800;
+            font-family: monospace;
+        }
+
+        .metric-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Architecture Nodes Grid */
+        .arch-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .arch-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Terminal Console */
+        .console-box {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+            height: 320px;
+            overflow-y: auto;
+        }
+
+        .console-header {
+            color: var(--text-muted);
+            border-bottom: 1px solid #1a2436;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .log-entry {
+            margin-bottom: 0.4rem;
+        }
+
+        .log-info { color: var(--accent-blue); }
+        .log-action { color: var(--accent-yellow); }
+        .log-warn { color: var(--accent-red); }
+        .log-success { color: var(--accent-green); }
+
+        /* Containment Buckets Panel */
+        .containment-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bucket-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .bucket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .bucket-name {
+            font-family: monospace;
+            font-weight: 700;
+        }
+
+        .bucket-count {
+            font-family: monospace;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .count-yellow { background: rgba(245, 158, 11, 0.15); color: var(--accent-yellow); }
+        .count-red { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+
+        .bucket-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Payload Table */
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(31, 41, 55, 0.5);
+            font-family: monospace;
+        }
+
+        .tag-status {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .tag-success { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+        .tag-patched { background: rgba(245, 158, 11, 0.1); color: var(--accent-yellow); }
+        .tag-isolated { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <header>
+        <div>
+            <div class="logo">OMNISYNC AGENTIC MESH (OSAM)</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Enterprise Migration, Agentic Validation & Isolation Engine</div>
+        </div>
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            SYSTEM ONLINE (8 THREADS)
+        </div>
+    </header>
+
+    <!-- Metrics Row -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-title">Ingestion Speed</div>
+            <div class="metric-value" style="color: var(--accent-cyan);">142.86</div>
+            <div class="metric-sub">Records / Second</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-title">Validated Items</div>
+            <div class="metric-value" style="color: var(--accent-green);">38</div>
+            <div class="metric-sub">Passed Integrity Audit</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-title">Agentic Self-Healed</div>
+            <div class="metric-value" style="color: var(--accent-yellow);">7</div>
+            <div class="metric-sub">Schema Drift Auto-Patched</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-title">Isolated Assets</div>
+            <div class="metric-value" style="color: var(--accent-red);">5</div>
+            <div class="metric-sub">Moved to RB Containment</div>
+        </div>
+    </div>
+
+    <!-- Main Grid: Terminal Console + Containment Panel -->
+    <div class="arch-grid">
+        
+        <!-- Live Execution Console -->
+        <div class="console-box">
+            <div class="console-header">// OSAM Pipeline Execution Stream & Log Telemetry</div>
+            <div class="log-entry log-info">[15:18:52] Starting Multi-Threaded Sync Pipeline across 8 Parallel Threads...</div>
+            <div class="log-entry log-success">[15:18:52] Extracted PAYLOAD-UUID-0001 from Windchill_PLM → Reconciled.</div>
+            <div class="log-entry log-action">[15:18:52] AGENTIC ACTION: Missing revision_id in PAYLOAD-UUID-0007. Applied default 'REV_01'.</div>
+            <div class="log-entry log-warn">[15:18:52] ISOLATED: PAYLOAD-UUID-0013 missing status field → Routed to RB950.</div>
+            <div class="log-entry log-warn">[15:18:52] ISOLATED: PAYLOAD-UUID-0020 checksum corrupt → Routed to RB999.</div>
+            <div class="log-entry log-action">[15:18:52] AGENTIC ACTION: Missing revision_id in PAYLOAD-UUID-0021. Applied default 'REV_01'.</div>
+            <div class="log-entry log-success">[15:18:52] Batch sync complete. 50 records processed with 0% database lock time.</div>
+        </div>
+
+        <!-- Containment Panel -->
+        <div class="containment-panel">
+            <div class="panel-title">
+                <span>RB-Series Containment</span>
+            </div>
+
+            <div class="bucket-card">
+                <div class="bucket-header">
+                    <div class="bucket-name" style="color: var(--accent-yellow);">RB950 Bucket</div>
+                    <div class="bucket-count count-yellow">3 STAGED</div>
+                </div>
+                <div class="bucket-desc">Work-In-Progress (WIP) Structural Isolator. Holds unverified schema modifications.</div>
+            </div>
+
+            <div class="bucket-card">
+                <div class="bucket-header">
+                    <div class="bucket-name" style="color: var(--accent-red);">RB999 Bucket</div>
+                    <div class="bucket-count count-red">2 STAGED</div>
+                </div>
+                <div class="bucket-desc">Frozen Asset & Risk Vault. Cryptographic checksum failures and corrupt payloads.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Payload Telemetry Table -->
+    <div class="table-container">
+        <div class="panel-title" style="margin-bottom: 1.5rem;">Sample Payload Execution Audit</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Payload ID</th>
+                    <th>Source System</th>
+                    <th>Target Hub</th>
+                    <th>SHA-256 Checksum</th>
+                    <th>Pipeline Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PAYLOAD-UUID-0001</td>
+                    <td>Windchill_PLM</td>
+                    <td>Codebeamer_Hub</td>
+                    <td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td>
+                    <td><span class="tag-status tag-success">VALIDATED</span></td>
+                </tr>
+                <tr>
+                    <td>PAYLOAD-UUID-0007</td>
+                    <td>SAP_ERP</td>
+                    <td>Codebeamer_Hub</td>
+                    <td>7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284ddd200126d9069b</td>
+                    <td><span class="tag-status tag-patched">AUTO-PATCHED</span></td>
+                </tr>
+                <tr>
+                    <td>PAYLOAD-UUID-0013</td>
+                    <td>Legacy_SQL_DW</td>
+                    <td>Codebeamer_Hub</td>
+                    <td>6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b</td>
+                    <td><span class="tag-status tag-isolated">ISOLATED (RB950)</span></td>
+                </tr>
+                <tr>
+                    <td>PAYLOAD-UUID-0020</td>
+                    <td>Windchill_PLM</td>
+                    <td>Codebeamer_Hub</td>
+                    <td>BAD_HASH_CORRUPTED</td>
+                    <td><span class="tag-status tag-isolated">ISOLATED (RB999)</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>OmniSync Agentic Mesh (OSAM) &bull; Designed by Shrinivas Alageri &bull; Enterprise System Architecture</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
+
